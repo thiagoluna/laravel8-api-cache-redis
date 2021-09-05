@@ -3,9 +3,9 @@
 </h4>
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=7159c1&labelColor=000000" alt="PRs welcome!" />
-
-  <img alt="License" src="https://img.shields.io/static/v1?label=PHPStan&message=Welcome&color=7159c1&labelColor=000000">
+ <img alt="PHPCS compliance" src="https://img.shields.io/static/v1?label=PHPCS&message=compliance&color=3fb950&labelColor=333333">
+ <img alt="PHPStan compliance" src="https://img.shields.io/static/v1?label=PHPStan&message=compliance&color=3fb950&labelColor=333333">
+ <img alt="PRs welcome!" src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=7159c1&labelColor=000000"  />
 </p>
 
 ## :rocket: Tecnologias
@@ -23,11 +23,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Esse projeto é uma API Restful desenvolvida como exemplo prático de criação de uma API Restful utilizando cache
 com REDIS
-
-
-## 💻 Funcionalidades
-
-O sistema possui cadastros/listagem/exibição/alteração/paginação e restrição de alteração de vagas de emprego assim como autenticação em JWT. A infraestrutura é toda configurada pelo docker/docker-compose.
 
 ## 📄 Requisitos
 
