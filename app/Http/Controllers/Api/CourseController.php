@@ -7,10 +7,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
-use App\Models\Course;
 use App\Services\CourseService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CourseController extends Controller
