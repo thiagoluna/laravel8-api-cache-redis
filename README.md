@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 Esse projeto é uma API Restful desenvolvida como exemplo prático de criação de uma API Restful utilizando cache
-com REDIS, Repository Pattern e Testes Funcionais
+com REDIS, Repository Pattern, Testes Funcionais e o Telescope para fazer a análise das queries.
 
 ## 📄 Requisitos
 
