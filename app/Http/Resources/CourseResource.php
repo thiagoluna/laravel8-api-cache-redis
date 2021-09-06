@@ -22,10 +22,11 @@ class CourseResource extends JsonResource
             $createdAt = Carbon::make($this->created_at)->format('d-m-Y');
         }
         return [
-            'name' => $this->name,
-            'description' => $this->description,
-            'uuid' => $this->uuid,
-            'createdAt' => $createdAt,
+            'name'          => $this->name,
+            'description'   => $this->description,
+            'uuid'          => $this->uuid,
+            'createdAt'     => Carbon::make($createdAt)->format('d/m/Y'),
+            'modules'       => ModuleResource::collection($this->whenLoaded('modules'))
         ];
     }
 }

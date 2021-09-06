@@ -6,6 +6,8 @@ namespace App\Repositories;
 
 use App\Models\Course;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class CourseRepository
 {
@@ -18,12 +20,24 @@ class CourseRepository
 
     public function getAllCourses() : Collection
     {
-        return $this->entity->get();
+//        return Cache::remember('courses', 120, function () {
+//            return $this->entity->with('modules.lessons')->get();
+//        });
+
+        return Cache::rememberForever('courses', function () {
+            return $this->entity->with('modules.lessons')->get();
+        });
     }
 
-    public function getCourseByUuid(string $uuid) : Course
+    public function getCourseByUuid(string $uuid, bool $loadRelationships = true) : Model
     {
-        return $this->entity->where('uuid', $uuid)->firstOrFail();
+        $query = $this->entity->where('uuid', $uuid);
+
+        if ($loadRelationships) {
+            $query->with('modules.lessons');
+        }
+
+        return $query->firstOrFail();
     }
 
     public function createNewCourse(array $request) : Course
@@ -33,11 +47,19 @@ class CourseRepository
 
     public function updateCourseByUuid(array $request, string $uuid) : bool
     {
-        return $this->getCourseByUuid($uuid)->update($request);
+        $course = $this->getCourseByUuid($uuid, false);
+
+        Cache::forget('courses');
+
+        return $course->update($request);
     }
 
     public function destroyCourseByUuid(string $uuid) : bool
     {
-        return $this->getCourseByUuid($uuid)->delete();
+        $course = $this->getCourseByUuid($uuid, false);
+
+        Cache::forget('courses');
+
+        return $course->delete();
     }
 }

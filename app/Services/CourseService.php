@@ -7,7 +7,7 @@ namespace App\Services;
 use App\Models\Course;
 use App\Repositories\CourseRepository;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 class CourseService
 {
@@ -18,7 +18,7 @@ class CourseService
         $this->courseRepository = $courseRepository;
     }
 
-    public function showCourse(string $uuid) : Course
+    public function showCourse(string $uuid) : Model
     {
         return $this->courseRepository->getCourseByUuid($uuid);
     }

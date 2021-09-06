@@ -45,7 +45,7 @@ class ModuleRepository
 
     public function createNewModule(array $request, Course $course) : Model
     {
-       return $course->modules()->create($request);
+        return $course->modules()->create($request);
     }
 
     public function updateModuleByUuid(array $request, string $uuid) : bool
