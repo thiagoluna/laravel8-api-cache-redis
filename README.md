@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 Esse projeto é uma API Restful desenvolvida como exemplo prático de criação de uma API Restful utilizando cache
-com REDIS
+com REDIS, Repository Pattern e Testes Funcionais
 
 ## 📄 Requisitos
 
@@ -65,7 +65,7 @@ docker-compose exec api-cache composer install
 docker-compose exec api-cache php artisan migrate
 ``` 
 
-- Após rodar o comando acima, o sistema já estará pronto e acessível em [http://localhost:8000](http://localhost:8000).  
+- Após rodar o comando acima, o sistema já estará pronto e acessível em [http://localhost:8989](http://localhost:8989).  
 
 - Para rodar e testar os endpoints, use o Postman ou Insomnia.
 
