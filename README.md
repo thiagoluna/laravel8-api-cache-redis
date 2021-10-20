@@ -21,12 +21,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Esse projeto é uma API Restful desenvolvida como exemplo prático de criação de uma API Restful utilizando cache
-com REDIS, Repository Pattern, Testes Funcionais e o Telescope para fazer a análise das queries.
+Esse projeto é uma API Restful desenvolvida como exemplo prático de criação de uma API Restful utilizando cache com REDIS, Repository Pattern, Testes Funcionais e o Telescope para fazer a análise das queries.
 
 ## 📄 Requisitos
 
-* PHP 7.4+, Laravel 7+, MySQL 5.7+ e Docker
+* PHP 7.4+, Laravel 8, MySQL 5.7+, Redis e Docker
 
 
 ## ⚙️ Instalação e execução
