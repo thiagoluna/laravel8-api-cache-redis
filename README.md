@@ -25,7 +25,7 @@ Esse projeto é uma API Restful desenvolvida como exemplo prático de criação 
 
 ## 📄 Requisitos
 
-* PHP 7.4+, Laravel 8, MySQL 5.7+, Redis e Docker
+* PHP 7.4+, Laravel 8, MySQL 5.7+, Redis e Docker.
 
 
 ## ⚙️ Instalação e execução
