@@ -66,6 +66,6 @@ docker-compose exec api-cache php artisan migrate
 
 - Após rodar o comando acima, o sistema já estará pronto e acessível em [http://localhost:8989](http://localhost:8989).  
 
-- Para rodar e testar os endpoints, use o Postman ou Insomnia
+- Para rodar e testar os endpoints, use o Postman ou Insomnia.
 
 Desenvolvido por Thiago Luna: [Linkedin!](https://www.linkedin.com/in/thiago-luna/)
