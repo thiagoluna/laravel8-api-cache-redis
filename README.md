@@ -41,7 +41,7 @@ Baixe o arquivo zip e o descompacte ou baixe o projeto para sua máquina atravé
 cd ir-ate-a-pasta-do-projeto
 ```
 
-- Crie o arquivo .env a partir do arquivo .env.example. As variáveis de ambiente relacionadas ao banco já estão configuradas.
+- Crie o arquivo .env a partir do arquivo .env.example. As variáveis de ambiente relacionadas ao banco já estão configuradas
 
 ```sh
 copy .env.example .env
