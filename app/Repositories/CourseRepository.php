@@ -20,12 +20,23 @@ class CourseRepository
 
     public function getAllCourses() : Collection
     {
-//        return Cache::remember('courses', 120, function () {
-//            return $this->entity->with('modules.lessons')->get();
-//        });
+        return $this->entity->orderBy('id', "desc")->get();
 
-        return Cache::rememberForever('courses', function () {
-            return $this->entity->with('modules.lessons')->get();
+        //Eager Loading
+        //return $this->entity->with('modules.lessons')->orderBy('id', "desc")->get();
+    }
+
+    public function getCachedAllCourses() : Collection
+    {
+        return Cache::remember('courses', config('course.modules.ttl_cache_in_seconds'), function () {
+            return $this->entity->with('modules.lessons')->orderBy('id', "desc")->get();
+        });
+    }
+
+    public function getOnlyCourses() : Collection
+    {
+        return Cache::remember('courses', config('course.modules.ttl_cache_in_seconds'), function () {
+            return $this->entity->get();
         });
     }
 

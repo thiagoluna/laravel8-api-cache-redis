@@ -10,6 +10,7 @@ use App\Http\Resources\LessonResource;
 use App\Services\LessonService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Symfony\Component\HttpFoundation\Response;
 
 class LessonController extends Controller
 {
@@ -27,9 +28,9 @@ class LessonController extends Controller
         return LessonResource::collection($lessons);
     }
 
-    public function store(LessonRequest $request, $module) : LessonResource
+    public function store(LessonRequest $request) : LessonResource
     {
-        $module = $this->lessonService->createNewLesson($request->validated());
+        $module = $this->lessonService->createNewLesson($request->all());
 
         return new LessonResource($module);
     }
@@ -43,7 +44,7 @@ class LessonController extends Controller
 
     public function update(LessonRequest $request, $module, $identify) : JsonResponse
     {
-        $this->lessonService->updateLesson($identify, $request->validated());
+        $this->lessonService->updateLesson($identify, $request->all());
 
         return response()->json(['message' => 'updated']);
     }
@@ -52,6 +53,6 @@ class LessonController extends Controller
     {
         $this->lessonService->deleteLesson($identify);
 
-        return response()->json([], 204);
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }

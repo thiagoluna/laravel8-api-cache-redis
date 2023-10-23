@@ -7,9 +7,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
+use App\Http\Resources\OnlyCourseResource;
 use App\Services\CourseService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Symfony\Component\HttpFoundation\Response;
 
 class CourseController extends Controller
 {
@@ -27,9 +29,23 @@ class CourseController extends Controller
         return CourseResource::collection($courses);
     }
 
+    public function getCachedAllCourses() : ResourceCollection
+    {
+        $courses = $this->courseService->getCachedAllCourses();
+
+        return CourseResource::collection($courses);
+    }
+
+    public function getOnlyCourses() : ResourceCollection
+    {
+        $courses = $this->courseService->getOnlyCourses();
+
+        return OnlyCourseResource::collection($courses);
+    }
+
     public function store(CourseRequest $request) : CourseResource
     {
-        $course = $this->courseService->storeNewCourse((array)$request->validated());
+        $course = $this->courseService->storeNewCourse($request->validated());
 
         return new CourseResource($course);
     }
@@ -43,15 +59,15 @@ class CourseController extends Controller
 
     public function update(CourseRequest $request, string $course) : JsonResponse
     {
-        $result = $this->courseService->updateCourse((array)$request->validated(), $course);
+        $this->courseService->updateCourse($request->validated(), $course);
 
         return response()->json(['message' => 'updated']);
     }
 
     public function destroy(string $uuid) : JsonResponse
     {
-        $course = $this->courseService->destroyCourse($uuid);
+        $this->courseService->destroyCourse($uuid);
 
-        return response()->json([], 204);
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }

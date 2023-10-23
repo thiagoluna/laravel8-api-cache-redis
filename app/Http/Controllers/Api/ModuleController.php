@@ -10,6 +10,7 @@ use App\Http\Resources\ModuleResource;
 use App\Services\ModuleService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Symfony\Component\HttpFoundation\Response;
 
 class ModuleController extends Controller
 {
@@ -27,7 +28,7 @@ class ModuleController extends Controller
         return ModuleResource::collection($modules);
     }
 
-    public function store(ModuleRequest $request, $course)
+    public function store(ModuleRequest $request)
     {
         $module = $this->moduleService->storeNewModule($request->validated());
 
@@ -43,15 +44,15 @@ class ModuleController extends Controller
 
     public function update(ModuleRequest $request, string $module) : JsonResponse
     {
-        $result = $this->moduleService->updateModule($request->validated(), $module);
+        $this->moduleService->updateModule($request->validated(), $module);
 
         return response()->json(['message' => 'updated']);
     }
 
     public function destroy(string $uuid) : JsonResponse
     {
-        $module = $this->moduleService->destroyModule($uuid);
+        $this->moduleService->destroyModule($uuid);
 
-        return response()->json([], 204);
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }

@@ -5,24 +5,36 @@ use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\ModuleController;
 use App\Http\Controllers\Api\LessonController;
 
-//Courses
-Route::get('/courses', [CourseController::class, 'index']);
-Route::post('/courses', [CourseController::class, 'store']);
-Route::get('/courses/{uuid}', [CourseController::class, 'show']);
-Route::put('/courses/{course}', [CourseController::class, 'update']);
-Route::delete('/courses/{uuid}', [CourseController::class, 'destroy']);
+Route::prefix('api')->group(function () {
 
-//Modules
-Route::post('/courses/{course}/modules', [ModuleController::class, 'store']);
-Route::get('/modules', [ModuleController::class, 'index']);
-Route::get('/modules/{module}', [ModuleController::class, 'show']);
-Route::put('/modules/{module}', [ModuleController::class, 'update']);
-Route::delete('/modules/{module}', [ModuleController::class, 'destroy']);
+    Route::prefix('v1')->group(function () {
 
-//Lessons
-Route::apiResource('/modules/{module}/lessons', LessonController::class);
+        //Courses
+        Route::get('/courses', [CourseController::class, 'index']);
+        Route::get('/cached-courses', [CourseController::class, 'getCachedAllCourses']);
+        Route::get('/only-courses', [CourseController::class, 'getOnlyCourses']);
+        Route::post('/courses', [CourseController::class, 'store']);
+        Route::get('/courses/{uuid}', [CourseController::class, 'show']);
+        Route::put('/courses/{course}', [CourseController::class, 'update']);
+        Route::delete('/courses/{uuid}', [CourseController::class, 'destroy']);
 
-Route::get('/', function () {
-    return response()->json(['message' => 'Ok']);
+        //Modules
+        Route::post('/modules', [ModuleController::class, 'store']);
+        Route::get('/modules', [ModuleController::class, 'index']);
+        Route::get('/modules/{module}', [ModuleController::class, 'show']);
+        Route::put('/modules/{module}', [ModuleController::class, 'update']);
+        Route::delete('/modules/{module}', [ModuleController::class, 'destroy']);
+
+        //Lessons
+        Route::post('/lessons', [LessonController::class, 'store']);
+        Route::get('/modules/{module}/lessons', [LessonController::class, 'index']);
+        Route::get('/modules/{module}/lessons/{lesson}', [LessonController::class, 'show']);
+        Route::put('modules/{module}/lessons/{lesson}', [LessonController::class, 'update']);
+        Route::delete('/modules/{module}/lessons/{lesson}', [LessonController::class, 'destroy']);
+
+        Route::get('/', function () {
+            return response()->json(['message' => 'Ok']);
+        });
+    });
 });
 

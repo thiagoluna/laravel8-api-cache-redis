@@ -28,6 +28,16 @@ class CourseService
         return $this->courseRepository->getAllCourses();
     }
 
+    public function getCachedAllCourses() : Collection
+    {
+        return $this->courseRepository->getCachedAllCourses();
+    }
+
+    public function getOnlyCourses() : Collection
+    {
+        return $this->courseRepository->getOnlyCourses();
+    }
+
     public function storeNewCourse(array $request) : Course
     {
         return $this->courseRepository->createNewCourse($request);
