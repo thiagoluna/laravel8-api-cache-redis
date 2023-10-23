@@ -2,6 +2,7 @@ version: "3.7"
 services:
     # image project
     api_cache:
+        container_name: api-cache
         build:
             args:
                 user: thiago
@@ -21,6 +22,7 @@ services:
 
     # nginx
     nginx:
+        container_name: api-cache-nginx
         image: nginx:alpine
         restart: unless-stopped
         ports:
@@ -33,6 +35,7 @@ services:
 
     # db mysql
     mysql:
+        container_name: api-cache-mysql
         image: mysql:5.7.22
         restart: unless-stopped
         environment:
@@ -49,6 +52,7 @@ services:
 
     # queue
     queue:
+        container_name: api-cache-worker1
         build:
             args:
                 user: thiago
@@ -66,6 +70,7 @@ services:
 
     # redis
     redis:
+        container_name: api-cache-redis
         image: redis:latest
         networks:
             - apicache

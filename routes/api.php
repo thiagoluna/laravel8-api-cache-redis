@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\EmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\ModuleController;
 use App\Http\Controllers\Api\LessonController;
+
+Route::get('/', function () {
+    return response()->json(['message' => 'Ok']);
+});
 
 Route::prefix('api')->group(function () {
 
@@ -32,9 +37,8 @@ Route::prefix('api')->group(function () {
         Route::put('modules/{module}/lessons/{lesson}', [LessonController::class, 'update']);
         Route::delete('/modules/{module}/lessons/{lesson}', [LessonController::class, 'destroy']);
 
-        Route::get('/', function () {
-            return response()->json(['message' => 'Ok']);
-        });
+        //Email
+        Route::post('/email/welcome', [EmailController::class, 'sendWelcomeEmail']);
     });
 });
 
